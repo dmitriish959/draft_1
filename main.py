@@ -6,7 +6,7 @@ from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, Callb
 logging.basicConfig(
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO
 )
-logger = logging.getLogger(__name)
+logger = logging.getLogger(__name__)
 
 
 def start(engine: Update, context: CallbackContext) -> None:
