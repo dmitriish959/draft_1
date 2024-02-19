@@ -27,6 +27,7 @@ def echo(update: Update, context: CallbackContext) -> None:
 
 
 def main() -> None:
+    # TODO импорты в начале файла
     from dotenv import load_dotenv
 
 
