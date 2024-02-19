@@ -1,4 +1,5 @@
 import logging
+# TODO где reauirements.txt ???
 from telegram import Update, ForceReply
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackContext
 
@@ -26,6 +27,7 @@ def echo(engine: Update, context: CallbackContext) -> None:
 
 
 def main() -> None:
+    # TODO импорты в начале файла
     from dotenv import load_dotenv
     import os
 
@@ -45,4 +47,5 @@ def main() -> None:
 
 
 if __name__ == '__main__':
+    # TODO PEP 8: W292 no newline at end of file
     main()
