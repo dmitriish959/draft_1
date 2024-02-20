@@ -1,6 +1,6 @@
 import logging
 from telegram import Update, ForceReply
-from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackContext
+from telegram.ext import Updater, CommandHandler, MessageHandler, filters, CallbackContext
 import os
 
 # вкл логирование
@@ -10,20 +10,20 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 
-def start(engine: Update, context: CallbackContext) -> None:
+def start(update: Update, context: CallbackContext) -> None:
     # Получаю имя пользователя указанное при регистрации
     user = engine.effective_user
     # Приветствие
-    engine.message.reply_markdown(fr'Привет, {user.mention_markdown()}!', reply_markup=ForceReply(selective=True))
+    update.message.reply_markdown(fr'Привет, {user.mention_markdown()}!', reply_markup=ForceReply(selective=True))
 
 
-def help_command(engine: Update, context: CallbackContext) -> None:
-    engine.message.reply_text('Я сам себе помочь не могу, а ты еще тут клацаешь!')
+def help_command(update: Update, context: CallbackContext) -> None:
+    update.message.reply_text('Я сам себе помочь не могу, а ты еще тут клацаешь!')
 
 
-def echo(engine: Update, context: CallbackContext) -> None:
+def echo(update: Update, context: CallbackContext) -> None:
     # Зеркалим запрос
-    engine.message.reply_text(engine.message.text)
+    update.message.reply_text(update.message.text)
 
 
 def main() -> None:
@@ -40,7 +40,7 @@ def main() -> None:
     dispatcher = updater.dispatcher
     dispatcher.add_handler(CommandHandler("start", start))
     dispatcher.add_handler(CommandHandler("help", help_command))
-    dispatcher.add_handler(MessageHandler(Filters.text & ~Filters.command, echo))
+    dispatcher.add_handler(MessageHandler(filters.text & ~filters.command, echo))
     updater.start_polling()
     updater.idle()
 
