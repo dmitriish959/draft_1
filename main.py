@@ -1,6 +1,7 @@
 import logging
 from telegram import Update, ForceReply
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackContext
+import os
 
 # вкл логирование
 logging.basicConfig(
@@ -27,7 +28,7 @@ def echo(engine: Update, context: CallbackContext) -> None:
 
 def main() -> None:
     from dotenv import load_dotenv
-    import os
+
 
     # Загрузка переменных из файла .env
     load_dotenv()
